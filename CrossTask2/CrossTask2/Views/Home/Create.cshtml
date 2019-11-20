@@ -1,0 +1,52 @@
+﻿@model CrossTask2.Models.Employee
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    .form-horizontal
+    {
+        background-color:white;
+        
+    }
+</style>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class=" form-horizontal">
+        <h4>Create Account</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+             @*   @Html.LabelFor(model => model.EmployeeName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-6 col-md-offset-4 col-xm-12">
+                    @Html.EditorFor(model => model.EmployeeName, new { htmlAttributes = new { @class = "form-control", placeholder="Enter Your Name" } })
+                    @Html.ValidationMessageFor(model => model.EmployeeName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+              @*  @Html.LabelFor(model => model.DepartmentId, "DepartmentId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+                <div class="col-md-6 col-md-offset-4 col-xm-12">
+                    @Html.DropDownList("DepartmentId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-6" >
+                    <input type="submit" value="Create" class="btn btn-default btn-primary" />
+                </div>
+            </div>
+    </div>
+}
+
+<div class="col-md-12">
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

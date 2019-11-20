@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Dropdown list</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="form-group">
+            <select id="country" class="form-control">
+                <option value="-1">- Select Country -</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select id="city" class="form-control">
+                <option value="-1">- Select City -</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+
+            var countries = [
+
+                { "Name": "Pakistan", "Code": 92, "Cities": ["Lahore", "Karachi", "Islamabad"] },
+                { "Name": "Chaina", "Code": 93, "Cities": ["Bejing", "Shingai", "Kashgar"] },
+            ];
+            for (var i = 0; i < countries.length; i++) {
+                $("#country").append("<option value='" + i + "'>" + countries[i].Name + "(" + countries[i].Code + ")" + "</option>")
+            }
+            $("#country").change(function () {
+                $("#city").html("<option value='-1'>- Select City -</option>")
+                var index = $(this).select("option:selected").val();
+                for (var i = 0; i < countries[index].Cities.length; i++) {
+                    $("#city").append("<option value='" + i + "'>" + countries[index].Cities[i] + "</option>")
+                }
+
+            });
+
+        });
+
+
+    </script>
+</body>
+</html>
