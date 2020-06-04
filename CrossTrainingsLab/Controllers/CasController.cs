@@ -15,9 +15,7 @@ namespace CrossTrainingsLab.Controllers
         public ActionResult Index()
         {
             List<Country> CountryList = db.Countries.ToList();
-            ViewBag.CountryList = new SelectList(CountryList, "CountryId", "Name");
-            //List<City> CityList = db.Cities.ToList();
-            //ViewBag.CityList = new SelectList(CityList, "CityId", "CityName");
+            ViewBag.CountryList = new SelectList(CountryList, "CountryId", "CountryName");
             return View();
         }
         public JsonResult GetCityList(int CountryId)
